@@ -1,0 +1,2 @@
+class StrahovatelsController < ApplicationController
+end
