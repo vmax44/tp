@@ -23,9 +23,7 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
-group :production, :development do
-  gem 'recaptcha'
-end
+gem 'recaptcha'
 
 gem 'devise'
 
