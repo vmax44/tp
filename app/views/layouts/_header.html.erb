@@ -1,7 +1,12 @@
 <div class="row-fluid">
   <% if user_signed_in? %>
     <div class="span9">
-      Current user: <%= current_user.firstname+" "+current_user.lastname %>
+    Current user: 
+    <%  if(current_user.firstname.nil? || current_user.lastname.nil?) %>
+      <%= current_user.login %>
+    <% else %>
+      <%= current_user.lastname+" "+current_user.firstname %>
+    <% end %>
     </div>
     <div class="span3">
       <%= link_to "Profile", edit_user_registration_path%>

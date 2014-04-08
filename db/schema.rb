@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140405173902) do
+ActiveRecord::Schema.define(version: 20140408193653) do
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "polis", force: true do |t|
+    t.integer  "agent_id"
+    t.integer  "strahovatel_id"
+    t.integer  "zastrahovanniy_id"
+    t.string   "number"
+    t.date     "date"
+    t.date     "datestart"
+    t.date     "datefinish"
+    t.integer  "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "strahovatels", force: true do |t|
     t.string   "lastname"
@@ -20,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140405173902) do
     t.string   "passport"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "users", force: true do |t|
