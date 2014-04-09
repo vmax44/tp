@@ -25,27 +25,44 @@ namespace :db do
       strah1=Strahovatel.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
-        address: Faker::Address
+        address: Faker::Address.city
       )
       strah2=Strahovatel.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
-        address: Faker::Address
+        address: Faker::Address.city
       )
       zastrah1=Strahovatel.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
-        address: Faker::Address
+        address: Faker::Address.city
       )
       zastrah2=Strahovatel.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
-        address: Faker::Address
+        address: Faker::Address.city
       )
       
-      user.polis.create!(
-        strahovatel_id: strah1.id
+      user.poliss.create!(
+        strahovatel_id: strah1.id,
+        zastrahovanniy_id: zastrah1.id,
+        number: polis_number,
+        date: Time.now,
+        datestart: Time.now + 5.days,
+        datefinish: Time.now + 4.days + 1.years ,
+        cost: 190
       )
+      polis_number=polis_number+1
+      user.poliss.create!(
+        strahovatel_id: strah2.id,
+        zastrahovanniy_id: zastrah2.id,
+        number: polis_number,
+        date: Time.now,
+        datestart: Time.now + 5.days,
+        datefinish: Time.now + 4.days + 1.years ,
+        cost: 190
+      )
+      polis_number=polis_number+1
       
     end
   end
