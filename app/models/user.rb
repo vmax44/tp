@@ -4,8 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
        
-  has_many :polis
-  has_many :strahovatels, :through => :polis
-  has_many :organizations, :through => :strahovatels
+  has_many :contracts, foreign_key: "agent_id"
+  has_many :strahovatels, :through => :contracts
+  has_many :zastrahovanniys, :through => :contracts
+  has_many :organizations, -> {uniq}, :through => :strahovatels
+  has_many :organizations_zastr, -> {uniq}, :through => :zastrahovanniys, :source => :organization
   
 end

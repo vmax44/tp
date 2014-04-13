@@ -2,7 +2,7 @@ namespace :db do
   require 'bcrypt'
   desc "Fill models with sample data"
   task populate: :environment do
-    polis_number=34823848
+    policy_number=34823848
     User.create!(login: "vmax444",
                  email: "vmax44@tut.byt",
                  password: "11111111",
@@ -43,26 +43,26 @@ namespace :db do
         address: Faker::Address.city
       )
       
-      user.poliss.create!(
+      user.contracts.create!(
         strahovatel_id: strah1.id,
         zastrahovanniy_id: zastrah1.id,
-        number: polis_number,
+        number: policy_number,
         date: Time.now,
         datestart: Time.now + 5.days,
         datefinish: Time.now + 4.days + 1.years ,
         cost: 190
       )
-      polis_number=polis_number+1
-      user.poliss.create!(
+      policy_number=policy_number+1
+      user.contracts.create!(
         strahovatel_id: strah2.id,
         zastrahovanniy_id: zastrah2.id,
-        number: polis_number,
+        number: policy_number,
         date: Time.now,
         datestart: Time.now + 5.days,
         datefinish: Time.now + 4.days + 1.years ,
         cost: 190
       )
-      polis_number=polis_number+1
+      policy_number=policy_number+1
       
     end
   end

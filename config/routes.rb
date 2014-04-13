@@ -1,6 +1,4 @@
 Tp::Application.routes.draw do
-  get "/" => "polis#index"
-  get "polis/add"
   devise_for :users, controllers: { registrations: 'registration' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -56,4 +54,9 @@ Tp::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  
+  get "/" => 'contracts#index'
+  #get "contract/add"
+
+  resources :contracts
 end
