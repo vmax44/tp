@@ -13,19 +13,8 @@
     <th></th>
   </tr>
  
-<% @contracts.each do |c| %>
-  <tr>
-    <td><%= link_to c.number, edit_contract_path(c) %></td>
-    <td><%= c.date %></td>
-    <td><%= c.datestart %></td>
-    <td><%= c.datefinish %></td>
-    <td><%= "#{c.strahovatel.lastname} #{c.strahovatel.firstname}" %></td>
-    <td><%= "#{c.zastrahovanniy.lastname} #{c.zastrahovanniy.firstname}" %></td>
-    <td><%= c.cost %></td>
-    <td><%= c.user.ikp %></td>
-    <td><%= link_to "Remove", c, method: :delete, data: { confirm: "Are you sure?" } %></td>
-  </tr>
-<% end %>
+<%= render @contracts %>
+
 </table>
 <%= will_paginate %>
 <br>
