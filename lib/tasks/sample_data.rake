@@ -7,6 +7,36 @@ namespace :db do
                  email: "vmax44@tut.byt",
                  password: "11111111",
                  admin: true)
+    u=User.create!(login: "johns0",
+              lastname: "Smith",
+              firstname: "John",
+              email: "lkasdf@lkjdf.com",
+              password: "11111111",
+              ikp: "440001-15")
+            
+    40.times do |n|
+      strah=Person.create!(
+        firstname: Faker::Name.first_name,
+        lastname: Faker::Name.last_name,
+        address: Faker::Address.city
+      )
+      zastrah=Person.create!(
+        firstname: Faker::Name.first_name,
+        lastname: Faker::Name.last_name,
+        address: Faker::Address.city
+      )
+      u.contracts.create!(
+        strahovatel_id: strah.id,
+        zastrahovanniy_id: zastrah.id,
+        number: policy_number,
+        date: Time.now,
+        datestart: Time.now + 5.days,
+        datefinish: Time.now + 4.days + 1.years ,
+        cost: 190
+      )
+      policy_number=policy_number+1
+      
+    end
     20.times do |n|
       firstname  = Faker::Name.first_name
       lastname = Faker::Name.last_name
@@ -22,22 +52,22 @@ namespace :db do
                    ikp: ikp
       )
 
-      strah1=Strahovatel.create!(
+      strah1=Person.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
         address: Faker::Address.city
       )
-      strah2=Strahovatel.create!(
+      strah2=Person.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
         address: Faker::Address.city
       )
-      zastrah1=Strahovatel.create!(
+      zastrah1=Person.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
         address: Faker::Address.city
       )
-      zastrah2=Strahovatel.create!(
+      zastrah2=Person.create!(
         firstname: Faker::Name.first_name,
         lastname: Faker::Name.last_name,
         address: Faker::Address.city
