@@ -1,24 +1,58 @@
-      <%= render 'shared/error_messages' %>
-    
-      <%= f.label :number %>
+<%= render 'shared/error_messages' %>
+
+<div class="row">
+  <div class="span4">
+    <strong>Information about policy</strong>
+    <div class="well">
+      <%= f.label :number, "Number" %>
       <%= f.text_field :number %>
 
-      <%= f.label :date %>
+      <%= f.label :date, "Date"%>
       <%= f.date_field :date %>
 
-      <%= f.label :datestart %>
+      <%= f.label :datestart, "Date start" %>
       <%= f.date_field :datestart %>
 
-      <%= f.label :datefinish %>
+      <%= f.label :datefinish, "Date finish" %>
       <%= f.date_field :datefinish %>
 
-      <%= f.label :strahovatel_id %>
-      <%= f.text_field :strahovatel_id %>
-
-      <%= f.label :zastrahovanniy_id %>
-      <%= f.text_field :zastrahovanniy_id %>
-
-      <%= f.label :cost %>
+      <%= f.label :cost, "GPW" %>
       <%= f.text_field :cost %>
+    </div>
+  </div>
 
-      <br />
+  <div class="span4">
+    <strong>Strahovatel:</strong>
+    <div class="well">
+
+      <%= f.fields_for :strahovatel do |s_form| %>
+        <%= s_form.label :firstname %>
+        <%= s_form.text_field :firstname %>
+        <%= s_form.label :lastname %>
+        <%= s_form.text_field :lastname %>
+      
+        <%= f.fields_for :organization_s do |o_form| %>
+          <%= o_form.label :organization_s, "Firm" %>
+          <%= o_form.text_field :name %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="span4">
+    <strong>Zastrahovanniy:</strong>
+    <div class="well">
+      <%= f.fields_for :zastrahovanniy do |z_form| %>
+        <%= z_form.label :firstname %>
+        <%= z_form.text_field :firstname %>
+        <%= z_form.label :lastname %>
+        <%= z_form.text_field :lastname %>
+      
+        <%= f.fields_for :organization_z do |o_form| %>
+          <%= o_form.label :organization_z, "Firm" %>
+          <%= o_form.text_field :name %>
+        <% end %>      
+      <% end %>
+    </div>
+  </div>
+</div>
+<br />

@@ -8,6 +8,11 @@ class ContractsController < ApplicationController
 
   def new
     @contract=current_user.contracts.new
+    @contract.build_strahovatel
+    @contract.strahovatel.build_organization
+    @contract.build_zastrahovanniy
+    @contract.zastrahovanniy.build_organization
+    
   end
   
   def create
@@ -46,8 +51,10 @@ class ContractsController < ApplicationController
   private
   
     def contract_params
-      params.require(:contract).permit(:id, :number, :strahovatel_id, :zastrahovanniy_id, :cost, 
-                                     :date, :datestart, :datefinish)
+      params.require(:contract).permit(:number, :strahovatel_id, :zastrahovanniy_id, :cost, 
+                                     :date, :datestart, :datefinish,
+                                      strahovatel_attributes:[:id, :firstname, :lastname],
+                                      zastrahovanniy_attributes:[:id, :firstname, :lastname])
     end
   
 end
