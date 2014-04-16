@@ -59,4 +59,5 @@ Tp::Application.routes.draw do
   #get "contract/add"
 
   resources :contracts
+  resources :organizations
 end

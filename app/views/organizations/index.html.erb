@@ -1,0 +1,14 @@
+<h1>Organizations</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+  </tr>
+ 
+<%= render @organizations %>
+
+</table>
+<%= will_paginate %>
+<br>
+ 
+<%= link_to "New organization", new_organization_path %>
