@@ -38,6 +38,20 @@ class OrganizationsController < ApplicationController
     end
   end
   
+  def destroy
+    @organization=Organization.find(params[:id])
+    if @organization.people.count==0
+      if @organization.destroy
+        flash[:success]="Organization deleted"
+      else
+        flash[:error]="Error while deleting organization"
+      end
+    else
+      flash[:error]="Deleting unsuccessfull (workers>0)"
+    end
+    redirect_to(organizations_path)
+  end
+  
   private
   
     def organization_params

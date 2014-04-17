@@ -1,9 +1,10 @@
 <tr>
-    <td><%= link_to organization.name, edit_organization_path(organization) %></td>
-    <td><a class="btn" href="#"><%=  organization.contracts.count %></a> </td>
+    <td><%= organization.name %></td>
+    <td><%= link_to organization.people.count, "#", class: "btn" %></td>
     <td>
-    <% if organization.contracts.count == 0 %> 
-      <%=  link_to "Remove", organization, method: :delete, class: "btn", data: { confirm: "Are you sure?" } %>
+      <%= link_to "Edit", edit_organization_path(organization), class: "btn" %>
+      <% if organization.people.count == 0 %> 
+        <%=  link_to "Remove", organization, method: :delete, class: "btn", data: { confirm: "Are you sure?" } %>
       <% end %>    
     </td>
 </tr>

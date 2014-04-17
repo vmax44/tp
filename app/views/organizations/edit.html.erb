@@ -7,6 +7,9 @@
       <%= render 'fields', f: f %>
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
-
+    
+    <% @organization.people.each do |p| %>
+    <p><%=p.firstname%> <%=p.lastname%> </p>
+    <% end %>
   </div>
 </div>

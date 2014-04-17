@@ -3,7 +3,8 @@
 <table class="table table-bordered table-striped">
   <tr>
     <th>Name</th>
-    <th>Contracts count</th>
+    <th>Workers count</th>
+    <th></th>
   </tr>
  
 <%= render @organizations %>
@@ -12,4 +13,4 @@
 <%= will_paginate %>
 <br>
  
-<%= link_to "New organization", new_organization_path %>
+<%= link_to "Add organization", new_organization_path, class: "btn" %>
