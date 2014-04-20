@@ -30,11 +30,7 @@
         <%= s_form.text_field :firstname %>
         <%= s_form.label :lastname %>
         <%= s_form.text_field :lastname %>
-      
-        <%= f.fields_for :organization_s do |o_form| %>
-          <%= o_form.label :organization_s, "Firm" %>
-          <%= o_form.text_field :name %>
-        <% end %>
+        <%= @organizations.nil? ? "organizations nil" : s_form.collection_select(:organization_id, @organizations, :id, :name) %>
       <% end %>
     </div>
   </div>
@@ -46,11 +42,6 @@
         <%= z_form.text_field :firstname %>
         <%= z_form.label :lastname %>
         <%= z_form.text_field :lastname %>
-      
-        <%= f.fields_for :organization_z do |o_form| %>
-          <%= o_form.label :organization_z, "Firm" %>
-          <%= o_form.text_field :name %>
-        <% end %>      
       <% end %>
     </div>
   </div>

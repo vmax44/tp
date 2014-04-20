@@ -8,6 +8,5 @@ class User < ActiveRecord::Base
   has_many :strahovatels, :through => :contracts
   has_many :zastrahovanniys, :through => :contracts
   has_many :organizations, -> {uniq}, :through => :strahovatels
-  has_many :organizations_zastr, -> {uniq}, :through => :zastrahovanniys, :source => :organization
 
 end
