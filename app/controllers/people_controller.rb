@@ -1,8 +1,9 @@
 class PeopleController < ApplicationController
   
   def search
-    request=params[:firstname]+'%'
-    @res=Person.select(:id,:firstname,:lastname).where("firstname LIKE ?",request)
+    fname=params[:firstname]+'%'
+    lname=params[:lastname]+'%'
+    @res=Person.select(:id,:firstname,:lastname).where("firstname LIKE ? and lastname LIKE ?",fname, lname)
     respond_to do |format|
       format.html {render "404"}
       format.json {render json: @res}
