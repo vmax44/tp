@@ -10,12 +10,8 @@ class OrganizationsController < ApplicationController
     end
   end
   
-  def city
-    
-  end
-  
   def search
-    request=params[:starts]+'%'
+    request='%'+params[:name]+'%'
     @res=Organization.select(:id,:name).where("name LIKE ?",request)
     respond_to do |format|
       format.html {render "404"}

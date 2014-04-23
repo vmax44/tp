@@ -60,5 +60,6 @@ Tp::Application.routes.draw do
 
   resources :contracts
   resources :organizations
-  get "search" => 'people#search'
+  get "people/search" => 'people#search'
+  get "organizations/search" => 'organizations#search'
 end
