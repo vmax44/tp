@@ -1,13 +1,16 @@
 $(function() {
+    
     var strahobj = new autoobj($("input#contract_strahovatel_attributes_firstname"),
-            $("input#contract_strahovatel_attributes_lastname"));
+            $("input#contract_strahovatel_attributes_lastname"),
+            "strahovatel_fields");
     strahobj.set();
     var zastrobj = new autoobj($("input#contract_zastrahovanniy_attributes_firstname"),
-            $("input#contract_zastrahovanniy_attributes_lastname"));
+            $("input#contract_zastrahovanniy_attributes_lastname"),
+            "zashovanniy_fields");
     zastrobj.set();
 
     // object for autocomplete firstname and lastname fields
-    function autoobj(firstname, lastname) {
+    function autoobj(firstname, lastname, divid) {
         var currentfield;
 
         this.set = function() {
@@ -43,7 +46,6 @@ $(function() {
                     }
                 }
             });
-        return this;
         };
     };
 

@@ -23,7 +23,7 @@
 
   <div class="span4">
     <strong>Strahovatel:</strong>
-    <div class="well">
+    <div id="strahovatel_fields" class="well">
 
       <%= f.fields_for :strahovatel do |s_form| %>
         <%= s_form.label :firstname %>
@@ -36,7 +36,7 @@
   </div>
   <div class="span4">
     <strong>Zastrahovanniy:</strong>
-    <div class="well">
+    <div id="zastrahovanniy_fields" class="well">
       <%= f.fields_for :zastrahovanniy do |z_form| %>
         <%= z_form.label :firstname %>
         <%= z_form.text_field :firstname %>
