@@ -1,0 +1,6 @@
+<%= form_for(person, remote: true) do |f| %>
+
+  <%= render 'person_fields', f: f %>
+<br />
+  <%= f.submit "Save person", class: "btn btn-large btn-primary" %>
+<% end %>

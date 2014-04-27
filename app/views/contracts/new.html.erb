@@ -1,12 +1,16 @@
 <h1>New policy:</h1>
 
 <div class="row">
-  <div>
-    <%= form_for(@contract) do |f| %>
-      
-      <%= render 'fields', f: f %>
-      <%= f.submit "Save new policy", class: "btn btn-large btn-primary" %>
-    <% end %>
 
+  <div class="span4">
+    <strong>Information about policy</strong>
+    <div id="policy_fields" class="well">
+      <%= form_for(@contract) do |f| %>
+        <%= render 'contract_fields', f: f %>
+        <%= f.submit "Save new policy", class: "btn btn-large btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+
+  <%= render 'people_fields' %>
   </div>
-</div>

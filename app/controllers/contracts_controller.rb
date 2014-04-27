@@ -19,6 +19,7 @@ class ContractsController < ApplicationController
   
   def create
     @contract=current_user.contracts.new(contract_params)
+
     if @contract.save
       flash[:success]= 'Policy added successfully!'
       redirect_to(contracts_path)

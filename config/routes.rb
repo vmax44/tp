@@ -58,8 +58,10 @@ Tp::Application.routes.draw do
   get "/" => 'contracts#index'
   #get "contract/add"
 
+  get "people/search" => 'people#search'
+  get "people/get_new_view" => 'people#get_new_view'
+  get "organizations/search" => 'organizations#search'
   resources :contracts
   resources :organizations
-  get "people/search" => 'people#search'
-  get "organizations/search" => 'organizations#search'
+  resources :people
 end

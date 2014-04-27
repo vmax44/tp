@@ -5,6 +5,10 @@
 $grayMediumLight: #eaeaea;
 $grayLight: #999;
 
+body {
+    background-color: #cccccc;
+    display: block;    
+}
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;

@@ -1,0 +1,21 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :number, "Number" %>
+  <%= f.text_field :number %>
+
+  <%= f.label :date, "Date"%>
+  <%= f.date_field :date %>
+
+  <%= f.label :datestart, "Date start" %>
+  <%= f.date_field :datestart %>
+
+  <%= f.label :datefinish, "Date finish" %>
+  <%= f.date_field :datefinish %>
+
+  <%= f.label :cost, "GPW" %>
+  <%= f.text_field :cost %>
+
+  <%= f.hidden_field :strahovatel_id %>
+  <%= f.hidden_field :zastrahovanniy_id %>
+
+<br />
