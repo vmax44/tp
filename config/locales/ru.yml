@@ -19,19 +19,19 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+ru:
   hello: "Hello world"
-  contract_added: "Contract added successfully"
-  contract_updated: "Contract updated successfully"
+  contract_added: "Полис успешно сохранен"
+  contract_updated: "Изменения по полису сохранены"
   contract:
       view:
           index:
-              number: "Number"
-              date: "Date"
-              date_start: "Date start"
-              date_finish: "Date finish"
-              strahovatel: "Strahovatel"
-              zastrahovanniy: "Zastrahovanniy"
-              cost: "GPW"
-              ikp: "IKP"
+              number: "Номер полиса"
+              date: "Дата заключения"
+              date_start: "Дата начала действия"
+              date_finish: "Дата окончания действия"
+              strahovatel: "Страхователь"
+              zastrahovanniy: "Застрахованный"
+              cost: "Страховая премия"
+              ikp: "ИКП агента"
               

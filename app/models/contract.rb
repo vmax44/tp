@@ -4,6 +4,8 @@ class Contract < ActiveRecord::Base
   has_one :organization, through: :strahovatel
   belongs_to :user, foreign_key: 'agent_id'
   validates :number, presence:true, uniqueness: true
+  validates :strahovatel_id, presence:true
+  validates :zastrahovanniy_id, presence: true
   
   accepts_nested_attributes_for :strahovatel
   accepts_nested_attributes_for :zastrahovanniy

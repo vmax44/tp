@@ -1,7 +1,12 @@
+<div id="messages"></div>
 <%= form_for(person, remote: true) do |f| %>
-
+  <div class="btn-group">
+    <%=  link_to "Edit", "#", class: "btn btn-small", id: "btnEdit"%>
+    <%=  link_to "Clear", "#", class: "btn btn-small", id: "btnClear"%>
+    <%=  link_to "Save", "#", class: "btn btn-small", id: "btnSave"%>
+  </div>
   <%= render 'person_fields', f: f %>
-<br />
-  <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+  <br />
+  <%= f.submit "Save", class: "btn btn-small btn-primary", type: "hidden" %>
 
-<% end %>
+  <% end %>

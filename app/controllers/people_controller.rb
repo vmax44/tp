@@ -11,6 +11,15 @@ class PeopleController < ApplicationController
     end
   end
   
+  def validate
+    person = Person.new(person_params)
+    validator(person)
+    respond_to do |format|
+      format.json { render json: @errors }
+    end
+
+  end
+  
   def new
     @person=Person.new
     respond_to do |format|
@@ -22,10 +31,11 @@ class PeopleController < ApplicationController
   def create
     @person=Person.new(person_params)
     respond_to do |format|
-      format.json {
+      format.html {
         @person.save
-        render json: @person.errors
+        render 'new', :layout=>!request.xhr?
       }
+
     end
   end
   
@@ -40,15 +50,15 @@ class PeopleController < ApplicationController
     @person=Person.find(params[:id])
     respond_to do |format|
       @person.update_attributes(person_params)
-      format.json {
-        render json: @person.errors
+      format.html {
+        render 'edit', :layout=>!request.xhr?
       }
     end
     
   end
   
   private
-    def person_params
-      params.require(:person).permit(:firstname,:lastname,:address,:passport,:organization_id)
-    end
+  def person_params
+    params.require(:person).permit(:firstname,:lastname,:address,:passport,:organization_id)
+  end
 end

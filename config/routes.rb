@@ -59,6 +59,7 @@ Tp::Application.routes.draw do
   #get "contract/add"
 
   get "people/search" => 'people#search'
+  get ':controller/validate', action: 'validate', as: :validate_form
   get "people/get_new_view" => 'people#get_new_view'
   get "organizations/search" => 'organizations#search'
   resources :contracts

@@ -21,7 +21,7 @@ class ContractsController < ApplicationController
     @contract=current_user.contracts.new(contract_params)
 
     if @contract.save
-      flash[:success]= 'Policy added successfully!'
+      flash[:success]= t(:contract_added)
       redirect_to(contracts_path)
     else
       @organizations=Organization.all
@@ -37,7 +37,7 @@ class ContractsController < ApplicationController
   def update
     @contract=current_user.contracts.find(params[:id])
     if @contract.update_attributes(contract_params)
-      flash[:success]="Policy updated successfully"
+      flash[:success]= t(:contract_updated)
       redirect_to(contracts_path)
     else
       @organizations=Organization.all
