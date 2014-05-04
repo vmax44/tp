@@ -20,13 +20,13 @@ function people_obj(container, fname, lname, elemforid) {
         o.get_form();
     };
     this.onPressSave = function(param) {
-        //param.preventDefault();
+        param.preventDefault();
         var o = param.data.obj;
         o.form.trigger('submit.rails');
         //o.firstname.focus();
     };
     this.init = function() {
-        var o=this;
+        var o = this;
         this.firstname = $(this.firstname_sel);
         this.lastname = $(this.lastname_sel);
         this.btnSave = this.container.find("a#btnSave");
@@ -35,39 +35,59 @@ function people_obj(container, fname, lname, elemforid) {
         this.btnClear.click({obj: this}, this.onPressClear);
         this.btnSave.click({obj: this}, this.onPressSave);
         this.btnEdit.click({obj: this}, this.onPressEdit);
-        if (this.id.val() > 0) {
+        this.form = this.firstname.closest('form');
+        var id_in_action_arr = this.form[0].action.match(/\/([0-9]+)$/);
+        var id_in_action = id_in_action_arr !== null ? id_in_action_arr[1] : "";
+        this.id.val(id_in_action);
+        var tmp=this.form.find('div').is('#error_explanation');
+        if (!this.form.find('div').is('#error_explanation') && (this.id.val() > 0)) {
             this.readonly();
         } else {
             this.canmodify();
         }
         this.autoobj();
-        this.form = this.firstname.closest('form');
-        this.form.validate(validation_people);
+
+        //this.form.validate(validation_people);
         this.form.on('ajax:success', function(event, data, status, xhr) {
             o.container.html(data);
             o.init();
         });
+
+        
     };
 
     this.readonly = function() {
-        this.firstname.closest('form')
+        this.form.off("focusout focusin", "input");
+        this.form
                 .children(':input')
                 .not(':hidden')
                 .not('.btn')
-                .attr('readonly', true);
+                .attr('disabled', true);
         this.btnSave.hide();
         this.btnClear.show();
         this.btnEdit.show();
     };
     this.canmodify = function() {
-        this.firstname.closest('form')
+        this.form
                 .children(':input')
                 .not(':hidden')
                 .not('.btn')
-                .removeAttr('readonly');
+                .removeAttr('disabled');
         this.btnSave.show();
         this.btnClear.show();
         this.btnEdit.hide();
+        var o=this;
+        
+        // when user exits from form, run autosave function
+        this.form.on("focusout focusin", "input", function(e) {
+            if (e.type === "focusout") {
+                o.form.attr("form-blur-timeout", window.setTimeout(function() {
+                    o.form.trigger('submit.rails');
+                 }, 100));
+            } else {
+                window.clearTimeout(o.form.attr("form-blur-timeout"));
+            }
+        });
     };
     this.autoobj = function() {
         var currentfield;
@@ -103,7 +123,7 @@ function people_obj(container, fname, lname, elemforid) {
                     o.firstname.val(ui.item.firstname);
                 }
                 o.id.val(ui.item.id);
-                o.readonly();
+                o.get_form();
             }
         });
     };
@@ -116,7 +136,6 @@ function people_obj(container, fname, lname, elemforid) {
                 url: o.id.val() > 0 ? "/people/" + o.id.val() + "/edit" : "/people/new",
                 dataType: "html",
                 success: function(data) {
-                    //alert( "Прибыли данные: " + data );
                     o.container.html(data);
                     o.init();
                 }
@@ -124,6 +143,10 @@ function people_obj(container, fname, lname, elemforid) {
         }
     };
 }
+
+tabindexes=function() {
+    $('input').not(':hidden').not('.btn').not(':disabled');
+};
 
 var validate_url = '/people/validate';
 var validation_people = {
@@ -171,13 +194,13 @@ var zastr = new people_obj("div#zastrahovanniy_fields",
         "input#contract_zastrahovanniy_id");
 
 
-    /*if(data.e.length===0) {
-     o.id.val(data.p.id);
-     o.container.find('div#messages').html('');
-     o.readonly();
-     } else {
-     o.container.find('div#messages').html(data.e.);
-     } */
+/*if(data.e.length===0) {
+ o.id.val(data.p.id);
+ o.container.find('div#messages').html('');
+ o.readonly();
+ } else {
+ o.container.find('div#messages').html(data.e.);
+ } */
 
 
 page_ready = function() {

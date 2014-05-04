@@ -34,4 +34,42 @@ ru:
               zastrahovanniy: "Застрахованный"
               cost: "Страховая премия"
               ikp: "ИКП агента"
-              
+  activerecord:
+      attributes:
+          person:
+              firstname: "Имя"
+              lastname: "Фамилия"
+              address: "Адрес"
+              passport: "Паспорт"
+          contract:
+              number: "Номер полиса"
+              date: "Дата заключения"
+              datestart: "Дата начала"
+              datefinish: "Дата окончания"
+              cost: "Страховая премия"
+              strahovatel_id: "Страхователь"
+              zastrahovanniy_id: "Застрахованный"
+      errors:
+          models:
+              person:
+                  attributes:
+                      passport:
+                          blank: "не может быть пустым"
+                          invalid: "имеет неправильный формат"
+                      firstname:
+                          blank: "не может быть пустым"
+                      lastname: 
+                          blank: "не может быть пустой"
+                      address:
+                          blank: "не может быть пустым"
+              contract:
+                  attributes:
+                      number: 
+                          blank: "не может быть пустым"
+                          taken: "уже есть в базе"
+                          invalid: "имеет неправильный формат"
+                      strahovatel_id:
+                          blank: "не выбран"
+                      zastrahovanniy_id:
+                          blank: "не выбран"
+                      

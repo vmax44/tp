@@ -2,7 +2,7 @@ class ContractsController < ApplicationController
    before_filter :authenticate_user!
   
   def index
-    @contracts=current_user.contracts.paginate(page: params[:page], 
+    @contracts=current_user.contracts.includes(:strahovatel,:zastrahovanniy,:user).paginate(page: params[:page], 
                                                per_page: 10)
   end
   
@@ -10,10 +10,11 @@ class ContractsController < ApplicationController
 
   def new
     @contract=current_user.contracts.new
-    @contract.build_strahovatel
-    @contract.strahovatel.build_organization
-    @contract.build_zastrahovanniy
-    @organizations=Organization.all
+    @contract.number=(Contract.last.number.to_i+1).to_s
+    #@contract.build_strahovatel
+    #@contract.strahovatel.build_organization
+    #@contract.build_zastrahovanniy
+    #@organizations=Organization.all
     
   end
   
@@ -22,11 +23,18 @@ class ContractsController < ApplicationController
 
     if @contract.save
       flash[:success]= t(:contract_added)
-      redirect_to(contracts_path)
-    else
-      @organizations=Organization.all
-      render 'new'
+      #redirect_to(contracts_path)
+      contractnew=current_user.contracts.new
+      contractnew.number=(@contract.number.to_i+1).to_s
+      contractnew.date=@contract.date
+      contractnew.datestart=@contract.datestart
+      contractnew.datefinish=@contract.datefinish
+      contractnew.cost=@contract.cost
+      contractnew.strahovatel_id=@contract.strahovatel_id
+      @contract=contractnew
     end
+    #@organizations=Organization.all
+    render 'new'
   end
   
   def edit
