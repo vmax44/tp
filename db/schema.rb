@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503103000) do
+ActiveRecord::Schema.define(version: 20140509192451) do
 
   create_table "contracts", force: true do |t|
     t.integer  "agent_id"
-    t.integer  "strahovatel_id"
-    t.integer  "zastrahovanniy_id"
+    t.integer  "insurant_id"
+    t.integer  "insured_id"
     t.string   "number"
     t.date     "date"
     t.date     "datestart"

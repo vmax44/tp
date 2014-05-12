@@ -1,2 +1,0 @@
-module PolisHelper
-end

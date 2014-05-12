@@ -1,0 +1,11 @@
+<tr>
+  <%= form_tag contracts_save_filter_path, method: "post" do %>
+    <%= render "filter_fields", s: @session %>
+  <td>
+      <%= submit_tag "Apply filter", class: "btn btn-small" %>
+  <% end %>
+  <%= form_tag contracts_clear_filter_path, method: "post" do %>
+    <%= submit_tag "Clear filter", class: "btn btn-small" %>
+  <% end %>
+  </td>
+</tr>

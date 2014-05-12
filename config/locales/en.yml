@@ -30,8 +30,8 @@ en:
               date: "Date"
               date_start: "Date start"
               date_finish: "Date finish"
-              strahovatel: "Strahovatel"
-              zastrahovanniy: "Zastrahovanniy"
+              insurant: "Insurant"
+              insured: "Insured"
               cost: "GPW"
               ikp: "IKP"
               

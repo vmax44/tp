@@ -1,3 +1,6 @@
+<div id="filter">
+  
+</div>
 <h1>Policies</h1>
 
 <table class="table table-bordered table-striped">
@@ -6,12 +9,13 @@
     <th><%= t("contract.view.index.date") %></th>
     <th><%= t("contract.view.index.date_start") %></th>
     <th><%= t("contract.view.index.date_finish") %></th>
-    <th><%= t("contract.view.index.strahovatel") %></th>
-    <th><%= t("contract.view.index.zastrahovanniy") %></th>
+    <th><%= t("contract.view.index.insurant") %></th>
+    <th><%= t("contract.view.index.insured") %></th>
     <th><%= t("contract.view.index.cost") %></th>
     <th><%= t("contract.view.index.ikp") %></th>
     <th></th>
   </tr>
+  <%= render "filter_form", s: @session   %>
  
 <%= render @contracts %>
 

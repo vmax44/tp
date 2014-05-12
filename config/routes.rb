@@ -62,7 +62,10 @@ Tp::Application.routes.draw do
   get ':controller/validate', action: 'validate', as: :validate_form
   get "people/get_new_view" => 'people#get_new_view'
   get "organizations/search" => 'organizations#search'
+  post "contracts/save_filter" => 'contracts#save_filter'
+  post "contracts/clear_filter" => 'contracts#clear_filter'
   resources :contracts
   resources :organizations
   resources :people
+  #resources :filter
 end

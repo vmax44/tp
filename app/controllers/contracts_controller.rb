@@ -2,8 +2,11 @@ class ContractsController < ApplicationController
    before_filter :authenticate_user!
   
   def index
-    @contracts=current_user.contracts.includes(:strahovatel,:zastrahovanniy,:user).paginate(page: params[:page], 
-                                               per_page: 10)
+    @session=session[:filter] ||= {}
+    @contracts=current_user.contracts
+            .joins(:insurant)
+            .merge(Insurant.where_name_like("%"+@session[filter_arr[1]]+"%"))
+            .paginate(page: params[:page], per_page: 10)
   end
   
 
@@ -11,10 +14,10 @@ class ContractsController < ApplicationController
   def new
     @contract=current_user.contracts.new
     @contract.number=(Contract.last.number.to_i+1).to_s
-    #@contract.build_strahovatel
-    #@contract.strahovatel.build_organization
-    #@contract.build_zastrahovanniy
-    #@organizations=Organization.all
+    #@contract.build_insurant
+    #@contract.insurant.build_organization
+    #@contract.build_insured
+    @organizations=Organization.all
     
   end
   
@@ -30,10 +33,10 @@ class ContractsController < ApplicationController
       contractnew.datestart=@contract.datestart
       contractnew.datefinish=@contract.datefinish
       contractnew.cost=@contract.cost
-      contractnew.strahovatel_id=@contract.strahovatel_id
+      contractnew.insurant_id=@contract.insurant_id
       @contract=contractnew
     end
-    #@organizations=Organization.all
+    @organizations=Organization.all
     render 'new'
   end
   
@@ -62,13 +65,42 @@ class ContractsController < ApplicationController
     redirect_to(contracts_path)
   end
   
+  def save_filter
+    session[:filter] ||= {}
+    filter_params.each { |key,val| session[:filter][key]=val }
+    flash[:success]='Filter updated'
+    redirect_to(contracts_path)
+  end
+  
+  def clear_filter
+    session[:filter] ||= {}
+    filter_arr.each { |key,val| session[:filter][key]=""}
+    flash[:success]='Filter cleared'
+    redirect_to(contracts_path)
+  end
+  
   private
   
     def contract_params
-      params.require(:contract).permit(:number, :strahovatel_id, :zastrahovanniy_id, :cost, 
+      params.require(:contract).permit(:number, :insurant_id, :insured_id, :cost, 
                                      :date, :datestart, :datefinish,
-                                      strahovatel_attributes:[:id, :firstname, :lastname, :organization_id],
-                                      zastrahovanniy_attributes:[:id, :firstname, :lastname])
+                                      insurant_attributes:[:id, :firstname, :lastname, :organization_id],
+                                      insured_attributes:[:id, :firstname, :lastname])
     end
   
+    def filter_params
+      params.require(:filter).permit(filter_arr)
+    end
+    
+    def self.where_params
+      #s=session[:filter] ||={}
+      where(:number, "LIKE %?%", session[:filter][filter_arr[0]])
+    end
+    
+    def filter_arr
+      ["number", "insurant_name", "insured_name", "cost", 
+       "date_f", "date_l", "datestart_f", "datestart_l",
+       "datefinish_f", "datefinish_l"]
+    end
+    
 end

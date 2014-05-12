@@ -30,8 +30,8 @@ ru:
               date: "Дата заключения"
               date_start: "Дата начала действия"
               date_finish: "Дата окончания действия"
-              strahovatel: "Страхователь"
-              zastrahovanniy: "Застрахованный"
+              insurant: "Страхователь"
+              insured: "Застрахованный"
               cost: "Страховая премия"
               ikp: "ИКП агента"
   activerecord:
@@ -47,8 +47,8 @@ ru:
               datestart: "Дата начала"
               datefinish: "Дата окончания"
               cost: "Страховая премия"
-              strahovatel_id: "Страхователь"
-              zastrahovanniy_id: "Застрахованный"
+              insurant_id: "Страхователь"
+              insured_id: "Застрахованный"
       errors:
           models:
               person:
@@ -68,8 +68,8 @@ ru:
                           blank: "не может быть пустым"
                           taken: "уже есть в базе"
                           invalid: "имеет неправильный формат"
-                      strahovatel_id:
+                      insurant_id:
                           blank: "не выбран"
-                      zastrahovanniy_id:
+                      insured_id:
                           blank: "не выбран"
                       

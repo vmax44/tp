@@ -184,14 +184,14 @@ var validation_people = {
 };
 
 
-var strah = new people_obj("div#strahovatel_fields",
+var strah = new people_obj("div#insured_fields",
         "input#person_firstname",
         "input#person_lastname",
-        "input#contract_strahovatel_id");
-var zastr = new people_obj("div#zastrahovanniy_fields",
+        "input#contract_insured_id");
+var zastr = new people_obj("div#insured_fields",
         "input#person_firstname",
         "input#person_lastname",
-        "input#contract_zastrahovanniy_id");
+        "input#contract_insured_id");
 
 
 /*if(data.e.length===0) {
