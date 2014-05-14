@@ -10,8 +10,8 @@ class Person < ActiveRecord::Base
     "#{lastname} #{firstname}"
   end
   
-  def self.where_name_like(f)
-    where("firstname like ? or lastname like ?",f,f)
+  def self.where_name_like(f,a)
+    where("'#{a}'.firstname like ? or '#{a}'.lastname like ?",f,f)
   end
   
 end

@@ -4,8 +4,12 @@ class ContractsController < ApplicationController
   def index
     @session=session[:filter] ||= {}
     @contracts=current_user.contracts
-            .joins(:insurant)
-            .merge(Insurant.where_name_like("%"+@session[filter_arr[1]]+"%"))
+            .joins(:insurant,:insured)
+            .where("number like ?","%"+@session[filter_arr[0]]+"%")
+            .where("date >= ?",@session[filter_arr[4]])
+            .where("date <= ?",@session[filter_arr[5]])
+            .merge(Insurant.where_name_like("%"+@session[filter_arr[1]]+"%","people"))
+            .merge(Insured.where_name_like("%"+@session[filter_arr[2]]+"%","insureds_contracts"))
             .paginate(page: params[:page], per_page: 10)
   end
   
@@ -90,11 +94,6 @@ class ContractsController < ApplicationController
   
     def filter_params
       params.require(:filter).permit(filter_arr)
-    end
-    
-    def self.where_params
-      #s=session[:filter] ||={}
-      where(:number, "LIKE %?%", session[:filter][filter_arr[0]])
     end
     
     def filter_arr
