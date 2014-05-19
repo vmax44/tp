@@ -4,16 +4,15 @@ class ContractsController < ApplicationController
   def index
     @session=session[:filter] ||= {}
     @contracts=current_user.contracts
-            .joins(:insurant,:insured)
-            .where("number like ?","%"+@session[filter_arr[0]]+"%")
-            .where("date >= ?",@session[filter_arr[4]])
-            .where("date <= ?",@session[filter_arr[5]])
-            .merge(Insurant.where_name_like("%"+@session[filter_arr[1]]+"%","people"))
-            .merge(Insured.where_name_like("%"+@session[filter_arr[2]]+"%","insureds_contracts"))
+            .joins(:insurant,:insured,:user)
+            .filter(@session)
             .paginate(page: params[:page], per_page: 10)
   end
   
-
+  def print
+    @contract=current_user.contracts.find(params[:id])
+    render 'edit'
+  end
 
   def new
     @contract=current_user.contracts.new
@@ -46,7 +45,6 @@ class ContractsController < ApplicationController
   
   def edit
     @contract=current_user.contracts.find(params[:id])
-    @organizations=Organization.all
   end
   
   def update
@@ -97,9 +95,9 @@ class ContractsController < ApplicationController
     end
     
     def filter_arr
-      ["number", "insurant_name", "insured_name", "cost", 
-       "date_f", "date_l", "datestart_f", "datestart_l",
-       "datefinish_f", "datefinish_l"]
+      ["fnumber", "finsurant_name", "finsured_name", "fcost", 
+       "fdate_f", "fdate_l", "fdatestart_f", "fdatestart_l",
+       "fdatefinish_f", "fdatefinish_l", "fikp"]
     end
     
 end

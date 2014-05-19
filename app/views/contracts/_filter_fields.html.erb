@@ -1,25 +1,8 @@
-    <td>
-      <%= text_field_tag "filter[number]", s["number"] %>
-    </td>
-    <td>
-      <%= date_field_tag "filter[date_f]", s["date_f"] %>
-      <%= date_field_tag "filter[date_l]", s["date_l"] %>
-    </td>
-    <td>
-      <%= date_field_tag "filter[datestart_f]", s["datestart_f"] %>
-      <%= date_field_tag "filter[datestart_l]", s["datestart_l"] %>
-    </td>
-    <td>
-      <%= date_field_tag "filter[datefinish_f]", s["datefinish_f"] %>
-      <%= date_field_tag "filter[datefinish_l]", s["datefinish_l"] %>
-    </td>
-    <td>
-      <%= text_field_tag "filter[insurant_name]", s["insurant_name"] %>
-    </td>
-    <td>
-      <%= text_field_tag "filter[insured_name]", s["insured_name"] %>
-    </td>
-    <td></td>
-    <td></td>
-
-      
+<%= render "filter_field", locals: {p1: "fnumber"}, s: s %>
+<%= render "filter_field", locals: {p1: "fdate_f", p2: "fdate_l"}, s: s %>
+<%= render "filter_field", locals: {p1: "fdatestart_f", p2: "fdatestart_l"}, s: s %>
+<%= render "filter_field", locals: {p1: "fdatefinish_f", p2: "fdatefinish_l"}, s: s %>
+<%= render "filter_field", locals: {p1: "finsurant_name"}, s: s %>
+<%= render "filter_field", locals: {p1: "finsured_name"}, s: s %>
+<%= render "filter_field", locals: {p1: "fcost"}, s: s %>
+<%= render "filter_field", locals: {p1: "ikp"}, s: s %>

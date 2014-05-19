@@ -39,7 +39,6 @@ function people_obj(container, fname, lname, elemforid) {
         var id_in_action_arr = this.form[0].action.match(/\/([0-9]+)$/);
         var id_in_action = id_in_action_arr !== null ? id_in_action_arr[1] : "";
         this.id.val(id_in_action);
-        var tmp=this.form.find('div').is('#error_explanation');
         if (!this.form.find('div').is('#error_explanation') && (this.id.val() > 0)) {
             this.readonly();
         } else {
@@ -184,10 +183,10 @@ var validation_people = {
 };
 
 
-var strah = new people_obj("div#insured_fields",
+var strah = new people_obj("div#insurant_fields",
         "input#person_firstname",
         "input#person_lastname",
-        "input#contract_insured_id");
+        "input#contract_insurant_id");
 var zastr = new people_obj("div#insured_fields",
         "input#person_firstname",
         "input#person_lastname",

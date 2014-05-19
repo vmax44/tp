@@ -64,8 +64,8 @@ Tp::Application.routes.draw do
   get "organizations/search" => 'organizations#search'
   post "contracts/save_filter" => 'contracts#save_filter'
   post "contracts/clear_filter" => 'contracts#clear_filter'
+  get "contracts/print/:id" => 'contracts#print', as: :contract_print
   resources :contracts
   resources :organizations
   resources :people
-  #resources :filter
 end

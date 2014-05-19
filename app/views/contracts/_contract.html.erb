@@ -7,5 +7,6 @@
     <td><%= contract.insured.name %></td>
     <td><%= contract.cost %></td>
     <td><%= contract.user.ikp %></td>
-    <td><%= link_to "Remove", contract, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    <td><%= link_to "Remove", contract, method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to t("contract.view.index.print"), contract_print_path(contract) %></td>
   </tr>

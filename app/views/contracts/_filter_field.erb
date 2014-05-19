@@ -1,0 +1,13 @@
+
+    <td>
+      <% locals.each do |key,val| %>
+        <div class="input-append">
+          <%  if val.scan("date").size>0 %>
+            <%= date_field_tag "filter[#{val}]", s["#{val}"], class: "input-small" %>
+          <%  else %>
+            <%= text_field_tag "filter[#{val}]", s["#{val}"], class: "input-mini" %>
+          <%  end %>
+          <span class="add-on" onclick="$(this.previousElementSibling).val('');">x</span>
+        </div>
+      <% end %>
+    </td>
