@@ -6,8 +6,8 @@ class Contract < ActiveRecord::Base
   belongs_to :user, foreign_key: 'agent_id'
   
   validates :number, presence:true, uniqueness: true
-  validates :strahovatel_id, presence:true
-  validates :zastrahovanniy_id, presence: true
+  validates :insurant_id, presence:true
+  validates :insured_id, presence: true
   
   scope :fnumber, ->(f) {where("number like ?","%#{f}%")}
   scope :fdate_f, ->(d) {where("date >= ?", d)}

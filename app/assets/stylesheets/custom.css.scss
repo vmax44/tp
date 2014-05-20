@@ -28,3 +28,17 @@ body {
   @extend .control-group;
   @extend .error;
 }
+
+.input-small.filter {
+    font-size: 12px;
+    padding: 1px;
+}
+
+.btn.btn-small.add-on {
+    font-size: 12px;
+    padding: 1px;
+}
+
+#filter-row td {
+    padding: 1px; 
+}
