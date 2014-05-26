@@ -44,7 +44,7 @@ class ContractsController < ApplicationController
   end
   
   def edit
-    @contract=current_user.contracts.find(params[:id])
+    @contract=current_user.contracts.find(params[:id]).localized
   end
   
   def update

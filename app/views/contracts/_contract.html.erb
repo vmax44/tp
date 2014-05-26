@@ -1,11 +1,11 @@
   <tr>
     <td><%= link_to contract.number, edit_contract_path(contract) %></td>
-    <td><%= contract.date %></td>
-    <td><%= contract.datestart %></td>
-    <td><%= contract.datefinish %></td>
+    <td><%= contract.localized.date %></td>
+    <td><%= contract.localized.datestart %></td>
+    <td><%= contract.localized.datefinish %></td>
     <td><%= contract.insurant.name %></td>
     <td><%= contract.insured.name %></td>
-    <td><%= contract.cost %></td>
+    <td><%= contract.localized.cost %></td>
     <td><%= contract.user.ikp %></td>
     <td><%= link_to "Remove", contract, method: :delete, data: { confirm: "Are you sure?" } %>
       <%= link_to t("contract.view.index.print"), contract_print_path(contract) %></td>

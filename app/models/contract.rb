@@ -1,5 +1,6 @@
 class Contract < ActiveRecord::Base
   include Filterable
+  include I18n::Alchemy
   
   belongs_to :insurant
   belongs_to :insured

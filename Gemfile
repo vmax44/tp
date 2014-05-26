@@ -23,6 +23,7 @@ group :production do
 end
 
 gem 'recaptcha'
+gem 'i18n_alchemy'
 
 gem 'devise'
 
